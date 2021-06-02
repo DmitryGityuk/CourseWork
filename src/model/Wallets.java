@@ -2,9 +2,16 @@ package model;
 
 import java.math.BigDecimal;
 import java.util.*;
+
 import static java.lang.System.out;
 
-public class Wallets implements ServiceWalletAndCard{
+/***
+ * Класс описывает список кошельков и работы с ними
+ */
+public class Wallets implements ServiceWalletAndCard {
+    /***
+     * список всех кошельков
+     */
     private ArrayList<Wallet> wallets;
 
     public Wallets() {
@@ -15,27 +22,42 @@ public class Wallets implements ServiceWalletAndCard{
         wallets.add(wallet);
     }
 
+    /***
+     * Метод производит печать списка всех кошельков
+     */
     @Override
     public void print() {
-        for (int i = 0; i < wallets.size(); i++) {
-            out.println(wallets.get(i));
+        wallets.stream().forEach(out::println);
         }
-    }
 
-    // TODO: сумма по всем кошелькам
+
+    /***
+     * Метод производит подсчёт общей суммы по всем кошелькам
+     */
     @Override
     public void getAllSum() {
         BigDecimal total = (BigDecimal) wallets
                 .stream()
                 .map(Wallet::allSum)
-                .reduce(BigDecimal.ZERO, BigDecimal:: add);
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         out.println("Общая сумма составляет: " + total);
     }
 
-
+    /***
+     * Класс описывает кошелёк
+     */
     static class Wallet {
+        /***
+         * Имя кошелька
+         */
         private String nameWallet;
+        /***
+         * список банкнот
+         */
         private List<BigDecimal> bills = new ArrayList<>();
+        /***
+         * список банковских карт в кошельке
+         */
         private Map<String, BigDecimal> creditCards = new HashMap<>();
 
 
@@ -51,14 +73,36 @@ public class Wallets implements ServiceWalletAndCard{
             this.nameWallet = nameWallet;
         }
 
+        /***
+         * Метод добавляет банкноту в кошелёк
+         * @param bill - банкнота
+         */
         public void adBill(BigDecimal bill) {
             bills.add(bill);
         }
 
+        public void deleteInformation(String newNameWallet) {
+            this.nameWallet = newNameWallet;
+        }
+
+        /***
+         * Метод добавляет банковскую карту
+         * @param cardName - имя карты
+         * @param balance - количество денежных средств на карте
+         */
         public void addCard(String cardName, BigDecimal balance) {
             creditCards.put(cardName, balance);
         }
 
+        public void deleteCard(String cardName){
+            creditCards.remove(cardName);
+        }
+
+        /***
+         * Метод производит подсчёт общей суммы денежных средств
+         * @param num
+         * @return
+         */
         private BigDecimal summarize(Collection<BigDecimal> num) {
             BigDecimal sum = new BigDecimal(0);
             for (BigDecimal nm : num)
@@ -66,17 +110,27 @@ public class Wallets implements ServiceWalletAndCard{
             return sum;
         }
 
-        // TODO: сумма по картам в кошельке
+
+        /***
+         * Метод производит подсчёт суммы денежных средств на банковских картах лежащих в кошельке
+         * @return
+         */
         public BigDecimal cardSum() {
             return summarize(creditCards.values());
         }
 
-        // TODO: сумма по наличке
+        /***
+         * Метод производит подсчёт суммы денежных средств(банкнот) в кошельке
+         * @return
+         */
         public BigDecimal billsSum() {
             return summarize(bills);
         }
 
-        // TODO: всего денег в кошельке
+        /***
+         * Метод производит подсчёт общей суммы денежных средств на кошельке (купюры + д.с на банковских картах)
+         * @return
+         */
         public BigDecimal allSum() {
             return billsSum().add(cardSum());
         }
@@ -92,7 +146,7 @@ public class Wallets implements ServiceWalletAndCard{
     }
 }
 
-class TestWallet{
+class TestWallet {
     public static void main(String[] args) {
         Wallets wallets = new Wallets();
         Wallets.Wallet wallet = new Wallets.Wallet("FirstWallet");
@@ -109,7 +163,7 @@ class TestWallet{
         wallets.add(wallet1);
         wallets.print();
         wallets.getAllSum();
-
+        wallet1.deleteInformation("SecondW545allet");
+        wallets.print();
     }
-
 }

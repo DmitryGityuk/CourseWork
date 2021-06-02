@@ -3,44 +3,81 @@ package model;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+
 import static java.lang.System.out;
 
-
+/***
+ * Класс описывает список банковских карт и работы с ними
+ */
 public class CreditCards implements ServiceWalletAndCard {
-
+    /***
+     * Список всех банковских карт
+     */
     private ArrayList<CreditCard> creditCards;
 
     public CreditCards() {
         this.creditCards = new ArrayList<>();
     }
 
+    /***
+     * Метод добавляет банковскую карту
+     * @param card - карта
+     */
     public void add(CreditCard card) {
         creditCards.add(card);
     }
 
+    /***
+     * Метод производит печать списка банковских карт
+     */
     @Override
     public void print() {
-        for (int i = 0; i < creditCards.size(); i++) {
-            out.println(creditCards.get(i));
+        creditCards.stream().forEach(out::println);
         }
-    }
 
+
+    /***
+     * Метод производит подсёт общей суммы по банковским картам
+     */
     @Override
     public void getAllSum() {
         BigDecimal total = creditCards
                 .stream()
                 .map(CreditCard::getBalance)
-                .reduce(BigDecimal.ZERO, BigDecimal:: add);
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         out.println("Общая сумма на картах составляет " + total);
     }
 
+    /***
+     * Класс описывает банковскую карту
+     */
     static class CreditCard {
-
+        /***
+         * Имя банка карты
+         */
         private String nameCard;
+        /***
+         * Количество денежных средств на банковской карте
+         */
         private BigDecimal balance;
+        /***
+         * Реквизиты банковской карты
+         */
         private long cardNumber;
+        /***
+         * Тип валюты банковской карты
+         */
         private CurrencyType currency;
 
+        /***
+         * Конструктор инизиализирующий банковскую карту
+         * @param nameCard
+         * @param cardNumber
+         * @param value
+         * @param currency
+         * @throws shortNameException
+         * @throws minusCardNumberException
+         */
         public CreditCard(String nameCard, long cardNumber, BigDecimal value, CurrencyType currency)
                 throws shortNameException, minusCardNumberException {
             if (nameCard.length() < 0) throw new shortNameException(nameCard);
@@ -86,7 +123,13 @@ public class CreditCards implements ServiceWalletAndCard {
             this.currency = currency;
         }
 
-        // TODO: снять деньги с карты
+
+        /***
+         * Метод производит списание денежных средств с карты
+         * @param sum - сумма списания
+         * @return true если все прошло успешно
+         * @throws minusBalanceException
+         */
         public boolean getMoney(BigDecimal sum) throws minusBalanceException {
             BigDecimal result;
             if (balance.compareTo(sum) < 0) throw new minusBalanceException(balance, sum);
@@ -109,18 +152,27 @@ public class CreditCards implements ServiceWalletAndCard {
             RUB
         }
 
+        /***
+         * Исключение обрабатывающее ошибку в реквезитах банковской карты
+         */
         public class minusCardNumberException extends Exception {
             public minusCardNumberException(long cardNumber) {
                 super("Номер счёта не может быть отрицательным " + cardNumber + " ");
             }
         }
 
+        /***
+         * Исключение обрабатывающее ошибку в наименовании банка карты
+         */
         public class shortNameException extends Exception {
             public shortNameException(String nameCard) {
-                super("Длинна имени карты не менее 1-го символа " + nameCard);
+                super("Длинна имени банка карты не менее 1-го символа " + nameCard);
             }
         }
 
+        /***
+         * Исключение обрабатывающее ошибку в балансе банковской карты
+         */
         public class minusBalanceException extends Exception {
             public minusBalanceException(BigDecimal balance, BigDecimal sum) {
                 super("Недостаточно средств на счёте \n Баланс: " + balance + "\n Сумма: " + sum);

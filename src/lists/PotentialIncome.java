@@ -8,6 +8,10 @@ import java.util.Map;
 
 import static java.lang.System.out;
 
+/***
+ * Класс описывает список потенциального дохода и работы с ним
+ */
+
 public class PotentialIncome implements ServiceList {
 
     class Income {
@@ -34,15 +38,27 @@ public class PotentialIncome implements ServiceList {
         }
     }
 
-    // TODO: добавляем новый приход
-    public void add(String category, BigDecimal value, String comment) {
+    /***
+     *
+     * Метод добавления нового дененежного поступления
+     *
+     * @param category - куда поступили деньги
+     * @param value - сумма поступлений
+     * @param comment - комментарий к поступлению
+     */
+    /*public void add(String category, BigDecimal value, String comment) {
         List<Income> incomeList = this.incoming.get(category);
         if (incomeList == null)
             throw new IllegalArgumentException("Категории " + category + " не существует.");
         incomeList.add(new Income(category, new BigDecimal(value), comment));//таже беда что и в затратах
-    }
+    }*/
 
-    // TODO: сумма поступлений по категории
+    /***
+     * Метод производит подсчет поступлений по категории
+     *
+     * @param category - куда поступили деньги
+     * @return - возвращаемое значение посутплений
+     */
     public BigDecimal getValue(String category) {
         List<Income> list = this.incoming.get(category);
         if (list == null)
@@ -53,15 +69,9 @@ public class PotentialIncome implements ServiceList {
         return cost;
     }
 
-    // TODO: общая сумма поступлений
-    public BigDecimal getAllValue() {
-        BigDecimal value = BigDecimal.valueOf(0);
-        for (List<Income> incomeList : incoming.values())
-            for (Income income : incomeList)
-                value.add(income.getValue());
-        return value;
-    }
-
+    /***
+     * Метод получения общей суммы поступлений
+     */
     @Override
     public void getTotalCosts() {
         BigDecimal total = incoming
@@ -74,6 +84,9 @@ public class PotentialIncome implements ServiceList {
 
     }
 
+    /***
+     * Метод производит печать всего списка поступлений
+     */
     @Override
     public void print() {
         for (int i = 0; i < incoming.size(); i++) {

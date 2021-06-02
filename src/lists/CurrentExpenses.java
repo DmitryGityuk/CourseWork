@@ -5,16 +5,37 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 import static java.lang.System.out;
 
+/***
+ * Класс описывает список текущих затрат и рабоыт с ними
+ */
 public class CurrentExpenses implements ServiceList {
 
     class Expense {
+        /***
+         * Наименование затраты
+         */
         private String name;
+        /***
+         * Стоимость затрат
+         */
         private BigDecimal price;
+        /***
+         * Дата траты
+         */
         private Date date;
         //private Instant day = date.atStartOfDay(ZoneId.systemDefault()).toInstant(); прикольно попробовать так, но как передать в конструктор хз
 
+        /***
+         * Конструктор инициализирующий список текущих затрат
+         *
+         * @param name
+         * @param price
+         * @param date
+         * @throws ParseException
+         */
         public Expense(String name, BigDecimal price, String date) throws ParseException {
             this.name = name;
             this.price = price;
@@ -30,16 +51,24 @@ public class CurrentExpenses implements ServiceList {
             return price;
         }
 
+        /***
+         * Метод преобразования строки в дату
+         *
+         * @param date
+         * @return
+         * @throws ParseException
+         */
         public Date parseDate(String date) throws ParseException {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = format.parse(date);
-            //System.out.println(date1);
             return date1;
         }
 
     }
 
-    // TODO: мапа с категорией как ключ и списком как значение
+    /***
+     * Мапа с категорией как ключ и списком как значение
+     */
     Map<String, List<Expense>> expanses;
 
     public CurrentExpenses() {
@@ -50,16 +79,29 @@ public class CurrentExpenses implements ServiceList {
         }
     }
 
-    // TODO: добавляем новую трату
-    public void add(String expanse, BigDecimal price, String date, String category) throws ParseException {
+
+    /***
+     * Метод добавляет в список новую трату
+     *
+     * @param nameExpanse - наименование траты
+     * @param price - стоимость траты
+     * @param date - дата траты
+     * @param category - категория
+     * @throws ParseException
+     */
+   /* public void add(String nameExpanse, BigDecimal price, String date, String category) throws ParseException {
         List<Expense> expenseList = this.expanses.get(category);
         if (expenseList == null)
             throw new IllegalArgumentException("Категории " + category + " не существует.");
-        expenseList.add(new Expense(expanse, new BigDecimal(price), date));// найти способ впихнуть сюда бигдесимал
+        expenseList.add(new Expense(nameExpanse, new BigDecimal(price), date));// найти способ впихнуть сюда бигдесимал
         // через valueOf() тоже не работает
-    }
+    }*/
 
-    // TODO: взять одну из затрат
+    /***
+     * Метод получения одной из затрат
+     *
+     * @return - возвращаемое значение
+     */
     public List<Expense> getExpense() {
         List<Expense> list = new ArrayList<>();
         for (List<Expense> ex : this.expanses.values())
@@ -67,7 +109,12 @@ public class CurrentExpenses implements ServiceList {
         return list;
     }
 
-    // TODO: сумма затрат по категории
+    /***
+     * Метод получения суммы затрат по категории
+     *
+     * @param category - категория
+     * @return - возращаемое значение
+     */
     public BigDecimal getCosts(String category) {
         List<Expense> list = this.expanses.get(category);
         if (list == null)
@@ -78,7 +125,9 @@ public class CurrentExpenses implements ServiceList {
         return cost;
     }
 
-    // TODO: общая сумма затрат
+    /***
+     * Метод получения общей суммы текущих затрат
+     */
     @Override
     public void getTotalCosts() {
         BigDecimal totalCost = expanses
@@ -90,6 +139,9 @@ public class CurrentExpenses implements ServiceList {
         out.println("Общая сумма затрат: " + totalCost);
     }
 
+    /***
+     * Метод производит печать всего списка текущих затрат
+     */
     @Override
     public void print() {
         for (int i = 0; i < expanses.size(); i++) {
@@ -101,7 +153,7 @@ public class CurrentExpenses implements ServiceList {
 class TestCurrentExpenses {
     public static void main(String[] args) throws ParseException {
         CurrentExpenses currentExpenses = new CurrentExpenses();
-        currentExpenses.add("Beer", new BigDecimal(78.00), "2021-05-15", "food");
+      //  currentExpenses.add("Beer", new BigDecimal(78.00), "2021-05-15", "food");
         System.out.println(currentExpenses.getExpense());
     }
 }

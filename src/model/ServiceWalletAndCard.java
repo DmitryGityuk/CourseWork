@@ -1,9 +1,14 @@
 package model;
 
 public interface ServiceWalletAndCard {
-
+    /***
+     * интерфейс печати всего списка
+     */
     void print();
 
-    // TODO: сумма по всем кошелькам/картам
+    /***
+     * интерфейс получения общей суммы по кошелькам/ банковским картам
+     */
     void getAllSum();
+
 }
