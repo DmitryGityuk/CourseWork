@@ -46,12 +46,12 @@ public class PotentialIncome implements ServiceList {
      * @param value - сумма поступлений
      * @param comment - комментарий к поступлению
      */
-    /*public void add(String category, BigDecimal value, String comment) {
+    public void add(String category, BigDecimal value, String comment) {
         List<Income> incomeList = this.incoming.get(category);
         if (incomeList == null)
             throw new IllegalArgumentException("Категории " + category + " не существует.");
         incomeList.add(new Income(category, new BigDecimal(value), comment));//таже беда что и в затратах
-    }*/
+    }
 
     /***
      * Метод производит подсчет поступлений по категории

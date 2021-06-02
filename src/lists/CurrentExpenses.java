@@ -26,7 +26,6 @@ public class CurrentExpenses implements ServiceList {
          * Дата траты
          */
         private Date date;
-        //private Instant day = date.atStartOfDay(ZoneId.systemDefault()).toInstant(); прикольно попробовать так, но как передать в конструктор хз
 
         /***
          * Конструктор инициализирующий список текущих затрат
@@ -79,7 +78,6 @@ public class CurrentExpenses implements ServiceList {
         }
     }
 
-
     /***
      * Метод добавляет в список новую трату
      *
@@ -89,13 +87,13 @@ public class CurrentExpenses implements ServiceList {
      * @param category - категория
      * @throws ParseException
      */
-   /* public void add(String nameExpanse, BigDecimal price, String date, String category) throws ParseException {
+   public void add(String nameExpanse, BigDecimal price, String date, String category) throws ParseException {
         List<Expense> expenseList = this.expanses.get(category);
         if (expenseList == null)
             throw new IllegalArgumentException("Категории " + category + " не существует.");
         expenseList.add(new Expense(nameExpanse, new BigDecimal(price), date));// найти способ впихнуть сюда бигдесимал
         // через valueOf() тоже не работает
-    }*/
+    }
 
     /***
      * Метод получения одной из затрат
@@ -153,7 +151,7 @@ public class CurrentExpenses implements ServiceList {
 class TestCurrentExpenses {
     public static void main(String[] args) throws ParseException {
         CurrentExpenses currentExpenses = new CurrentExpenses();
-      //  currentExpenses.add("Beer", new BigDecimal(78.00), "2021-05-15", "food");
+        //  currentExpenses.add("Beer", new BigDecimal(78.00), "2021-05-15", "food");
         System.out.println(currentExpenses.getExpense());
     }
 }
