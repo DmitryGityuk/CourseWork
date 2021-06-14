@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.WalletController">
+    <children>
+        <AnchorPane layoutY="40.0" prefHeight="361.0" prefWidth="700.0" style="-fx-background-color: fafafa;">
+            <children>
+            <Button fx:id="addBankCard" layoutX="22.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="324.0" text="Добавить банковскую карту">
+               <font>
+                  <Font name="Lobster" size="14.0" />
+               </font>
+            </Button>
+                <Button layoutX="7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="105.0" style="-fx-background-color: fafafa;" text="Wallet">
+                    <font>
+                        <Font name="Lobster" size="25.0" />
+                    </font>
+                </Button>
+            <TextField fx:id="addNameWallet" layoutX="22.0" layoutY="52.0" prefHeight="25.0" prefWidth="324.0" promptText="Введите название кошелька">
+               <font>
+                  <Font name="Lobster" size="17.0" />
+               </font>
+            </TextField>
+            <ListView fx:id="listWallets" layoutX="362.0" layoutY="52.0" prefHeight="300.0" prefWidth="324.0" />
+            <Button fx:id="goBack" layoutX="22.0" layoutY="302.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="75.0" style="-fx-background-color: #2E3348;" text="Назад" textFill="WHITE">
+               <font>
+                  <Font name="Lobster" size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="addBills" layoutX="22.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="324.0" text="Добавить поступление наличных">
+               <font>
+                  <Font name="Lobster" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="save" layoutX="22.0" layoutY="202.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="181.0" style="-fx-background-color: #2E3348;" text="Сохранить" textFill="WHITE">
+               <font>
+                  <Font name="Lobster" size="17.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+        <Label layoutX="6.0" layoutY="-1.0" text="BudgetCoin" textFill="WHITE">
+            <font>
+                <Font name="Lobster" size="23.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
