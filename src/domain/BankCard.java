@@ -2,9 +2,11 @@ package domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import enums.interfaces.Currency;
 
-public class BankCard {
+import enums.interfaces.Currency;
+import enums.interfaces.Parse;
+
+public class BankCard implements Parse {
     /***
      * Имя банка карты
      */
@@ -16,11 +18,17 @@ public class BankCard {
     /***
      * Реквизиты банковской карты
      */
-    private long cardNumber;
+    private String cardNumber; //todo исправлен на стринг потому что, строка immutable и никто не изменит наши реквизиты
     /***
      * Тип валюты банковской карты
      */
     private Currency currency;
+
+    /***
+     * Конструктор по умолчанию
+     */
+    public BankCard() {
+    }
 
     /***
      * Конструктор инициализирующий банковскую карту
@@ -30,11 +38,11 @@ public class BankCard {
      * @throws shortNameException
      * @throws minusCardNumberException
      */
-    public BankCard(String nameBankCard, BigDecimal balance, long cardNumber) throws shortNameException, minusCardNumberException {
+    public BankCard(String nameBankCard, String balance, String cardNumber) throws shortNameException, minusCardNumberException {
         if (nameBankCard.length() < 0) throw new shortNameException(nameBankCard);
         this.nameBankCard = nameBankCard;
-        if (cardNumber < 0) throw new minusCardNumberException(cardNumber);
-        this.balance = balance.setScale(2, RoundingMode.UNNECESSARY);
+        if (cardNumber == null) throw new minusCardNumberException(cardNumber);
+        this.balance = parseBigDecimal(balance).setScale(2, RoundingMode.UNNECESSARY);//todo здесь оставлен setScale просто непонятно в методе от деприкатед, а тут нет.
         this.cardNumber = cardNumber;
 
     }
@@ -51,16 +59,16 @@ public class BankCard {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+    public void setBalance(String balance) {
+        this.balance = parseBigDecimal(balance);
     }
 
-    public long getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(long cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = wrongRequisitesCardNumber(cardNumber);
     }
 
     public Currency getCurrency() {
@@ -75,7 +83,7 @@ public class BankCard {
      * Исключение обрабатывающее ошибку в реквизитах банковской карты
      */
     public class minusCardNumberException extends Exception {
-        public minusCardNumberException(long cardNumber) {
+        public minusCardNumberException(String cardNumber) {
             super("Номер счёта не может быть отрицательным " + cardNumber + " ");
         }
     }
@@ -98,6 +106,16 @@ public class BankCard {
         }
     }
 
+    /***
+     * Метод проверки строки реквизитов на правильность ввода
+     * @param cardNumber
+     * @return
+     */
+    public String wrongRequisitesCardNumber(String cardNumber) {
+        String s = cardNumber.replaceAll("[^0-9.]", "");
+        return s;
+    }
+
     @Override
     public String toString() {
         return "CreditCard { " +
@@ -105,5 +123,13 @@ public class BankCard {
                 " Номер карты: " + cardNumber + '\\' +
                 " Баланс карты: " + balance + '\\' +
                 " Тип валюты: " + Currency.RUB + '}';
+    }
+
+    @Override
+    public BigDecimal parseBigDecimal(String str) {
+        str.replace(',', '.');
+        BigDecimal b = new BigDecimal(str);
+        b = b.setScale(2, BigDecimal.ROUND_DOWN);
+        return b;
     }
 }

@@ -24,6 +24,17 @@ public class PotentialIncome implements ServiceList {
             this.incoming.put(cat, new ArrayList<>());
         }
     }
+    /***
+     * Метод позволяет добавить проинициализированный доход
+     * @param income
+     * @param category
+     */
+    public void addIncome(Income income, String category){
+        List<Income> incomeList = this.incoming.get(category);
+        if (incomeList == null)
+            throw new IllegalArgumentException("Категории " + category + " не существует.");
+        incomeList.add(income);
+    }
 
     /***
      * Метод добавления нового дененежного поступления
@@ -32,7 +43,7 @@ public class PotentialIncome implements ServiceList {
      * @param value - сумма поступлений
      * @param comment - комментарий к поступлению
      */
-    public void add(BigDecimal value, String comment, String category) {
+    public void add(String value, String comment, String category) {
         List<Income> incomeList = this.incoming.get(category);
         if (incomeList == null)
             throw new IllegalArgumentException("Категории " + category + " не существует.");

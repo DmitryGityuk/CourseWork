@@ -6,31 +6,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.CardToWalletController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.CardToWalletController">
     <children>
-        <AnchorPane layoutY="40.0" prefHeight="361.0" prefWidth="700.0" style="-fx-background-color: fafafa;">
+        <AnchorPane layoutY="40.0" prefHeight="560.0" prefWidth="900.0" style="-fx-background-color: fafafa;">
             <children>
-                <Label layoutX="7.0" layoutY="6.0" text="Cards">
+                <Label layoutX="22.0" layoutY="20.0" text="Cards">
                     <font>
-                        <Font name="Lobster" size="23.0" />
+                        <Font name="Lobster" size="25.0" />
                     </font>
                 </Label>
-                <TextField fx:id="addNameCard" layoutX="14.0" layoutY="48.0" prefHeight="25.0" prefWidth="296.0" promptText="Введите наименование банка эмитента карты">
+                <TextField fx:id="addNameCard" layoutX="22.0" layoutY="80.0" prefHeight="58.0" prefWidth="330.0" promptText="Введите наименование банка эмитента карты">
                     <font>
                         <Font name="Lobster" size="13.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="addBalanceCard" layoutX="14.0" layoutY="89.0" prefHeight="25.0" prefWidth="296.0" promptText="Введите баланс карты">
+                <TextField fx:id="addBalanceCard" layoutX="22.0" layoutY="160.0" prefHeight="58.0" prefWidth="330.0" promptText="Введите баланс карты">
                     <font>
                         <Font name="Lobster" size="13.0" />
                     </font>
                 </TextField>
-                <Button fx:id="goBack" layoutX="14.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #2E3348;" text="Назад" textFill="#fcfcfc">
+                <Button fx:id="goBack" layoutX="22.0" layoutY="503.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #2E3348;" text="Назад" textFill="#fcfcfc">
                     <font>
                         <Font name="Lobster" size="17.0" />
                     </font>
                 </Button>
-                <Button fx:id="save" layoutX="14.0" layoutY="128.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: #2E3348;" text="Сохранить" textFill="#fcfcfc">
+                <Button fx:id="save" layoutX="22.0" layoutY="240.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="181.0" style="-fx-background-color: #2E3348;" text="Сохранить" textFill="#fcfcfc">
                     <font>
                         <Font name="Lobster" size="17.0" />
                     </font>

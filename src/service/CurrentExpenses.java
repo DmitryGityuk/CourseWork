@@ -28,6 +28,18 @@ public class CurrentExpenses implements ServiceList {
     }
 
     /***
+     * Метод позволяет добавить проинициализированную трату
+     * @param expense
+     * @param category
+     */
+    public void addExpense(Expense expense, String category){
+        List<Expense> expenseList = this.expanses.get(category);
+        if (expenseList == null)
+            throw new IllegalArgumentException("Категории " + category + " не существует.");
+        expenseList.add(expense);
+    }
+
+    /***
      * Метод добавляет в список новую трату
      *
      * @param nameExpanse - наименование траты
@@ -36,7 +48,7 @@ public class CurrentExpenses implements ServiceList {
      * @param category - категория
      * @throws ParseException
      */
-    public void add(String nameExpanse, BigDecimal price, String date, String category) throws ParseException {
+    public void add(String nameExpanse, String price, String date, String category) throws ParseException {
         List<Expense> expenseList = this.expanses.get(category);
         if (expenseList == null)
             throw new IllegalArgumentException("Категории " + category + " не существует.");

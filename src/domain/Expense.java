@@ -1,5 +1,7 @@
 package domain;
 
+import enums.interfaces.Parse;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -10,7 +12,7 @@ import java.util.Locale;
 /***
  * Класс описывает затрату
  */
-public class Expense {
+public class Expense implements Parse {
     /***
      * Наименование затраты
      */
@@ -24,8 +26,6 @@ public class Expense {
      */
     private Date date;
 
-    private String[] categories;
-
     public String getName() {
         return name;
     }
@@ -38,8 +38,22 @@ public class Expense {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPrice(String price) {
+        this.price = parseBigDecimal(price);
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(String date) throws ParseException {
+        this.date = parseDate(date);
+    }
+
+    /***
+     * Конструктор по умолчанию
+     */
+    public Expense() {
     }
 
     /***
@@ -50,9 +64,9 @@ public class Expense {
      * @param date
      * @throws ParseException
      */
-    public Expense(String name, BigDecimal price, String date) throws ParseException {
+    public Expense(String name, String price, String date) throws ParseException {
         this.name = name;
-        this.price = price;
+        this.price = parseBigDecimal(price);
         this.date = parseDate(date);
     }
 
@@ -74,5 +88,18 @@ public class Expense {
         Date date1 = format.parse(date);
         Timestamp tm = new Timestamp(date1.getTime());
         return tm;
+    }
+
+    /***
+     * Метод преобразования строки в BigDecimal
+     * @param str
+     * @return
+     */
+    @Override
+    public BigDecimal parseBigDecimal(String str) {
+        str.replace(',', '.');
+        BigDecimal b = new BigDecimal(str);
+        b = b.setScale(2, BigDecimal.ROUND_DOWN);
+        return b;
     }
 }

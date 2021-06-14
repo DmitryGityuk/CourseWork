@@ -50,7 +50,6 @@ public class Wallet {
         this.bankCards = bankCards;
     }
 
-
     /***
      * Метод добавляет банкноту в кошелёк
      * @param bill - банкнота
@@ -59,7 +58,7 @@ public class Wallet {
         bills.add(bill);
     }
 
-    public void getBill(BigDecimal bill){
+    public void getBill(BigDecimal bill) {
         bills.remove(bill);
     }
 
@@ -92,7 +91,6 @@ public class Wallet {
         return sum;
     }
 
-
     /***
      * Метод производит подсчёт суммы денежных средств на банковских картах лежащих в кошельке
      * @return
@@ -117,13 +115,12 @@ public class Wallet {
         return billsSum().add(cardSum());
     }
 
-
     @Override
     public String toString() {
         return "Wallet {" +
                 " Имя кошелька: " + nameWallet + '\\' +
                 " Наличных в кошельке: " + bills + '\\' +
-                " Сумма денег на карте: " +  + '\\' +
+                " Сумма денег на карте: " + +'\\' +
                 " Всего денег в кошельке: " + allSum() + '}';
     }
 }

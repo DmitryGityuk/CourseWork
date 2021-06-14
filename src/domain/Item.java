@@ -1,11 +1,13 @@
 package domain;
 
+import enums.interfaces.Parse;
+
 import java.math.BigDecimal;
 
 /***
  * Класс описывает предмет для списка потенциальных затрат
  */
-public class Item {
+public class Item implements Parse {
     /***
      * Название траты
      */
@@ -19,9 +21,21 @@ public class Item {
      */
     int priority;
 
-    public Item(String name, BigDecimal price, int priority) {
+    /***
+     * Конструктор по умолчанию
+     */
+    public Item() {
+    }
+
+    /***
+     * Конструктор инициализирующий покупку
+     * @param name
+     * @param price
+     * @param priority
+     */
+    public Item(String name, String price, int priority) {
         this.name = name;
-        this.price = price;
+        this.price = parseBigDecimal(price);
         this.priority = priority;
     }
 
@@ -37,8 +51,8 @@ public class Item {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPrice(String price) {
+        this.price = parseBigDecimal(price);
     }
 
     public int getPriority() {
@@ -52,5 +66,13 @@ public class Item {
     @Override
     public String toString() {
         return "Предвидится трата на  " + this.name + " (" + " по цене " + getPrice() + ", в приоритете: " + this.priority + ')';
+    }
+
+    @Override
+    public BigDecimal parseBigDecimal(String str) {
+        str.replace(',', '.');
+        BigDecimal b = new BigDecimal(str);
+        b = b.setScale(2, BigDecimal.ROUND_DOWN);
+        return b;
     }
 }

@@ -2,6 +2,7 @@ package service;
 
 import domain.BankCard;
 import enums.interfaces.ServiceWalletAndCard;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,7 +43,7 @@ public class BankCardService implements ServiceWalletAndCard {
      * @param bankCard
      * @param newNameCard
      */
-    public void changeNameBankCard(BankCard bankCard, String newNameCard){
+    public void changeNameBankCard(BankCard bankCard, String newNameCard) {
         bankCard.setNameBankCard(newNameCard);
     }
 
@@ -51,10 +52,9 @@ public class BankCardService implements ServiceWalletAndCard {
      * @param bankCard
      * @param newCardNumber
      */
-    public void changeCardNumber(BankCard bankCard, long newCardNumber){
+    public void changeCardNumber(BankCard bankCard, String newCardNumber) {
         bankCard.setCardNumber(newCardNumber);
     }
-
 
     /***
      * Метод производит подсчёт общей суммы по банковским картам

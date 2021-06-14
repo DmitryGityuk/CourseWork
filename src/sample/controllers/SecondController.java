@@ -46,7 +46,7 @@ public class SecondController {
                 e.printStackTrace();
             }
             stage.setTitle("BudgetCoin");
-            stage.setScene(new Scene(rootSecond, 700, 400));
+            stage.setScene(new Scene(rootSecond, 900, 600));
             stage.show();
         });
 
@@ -60,7 +60,7 @@ public class SecondController {
                 e.printStackTrace();
             }
             stage.setTitle("BudgetCoin");
-            stage.setScene(new Scene(rootSecond, 700, 400));
+            stage.setScene(new Scene(rootSecond, 900, 600));
             stage.show();
         });
 
@@ -74,7 +74,7 @@ public class SecondController {
                 e.printStackTrace();
             }
             stage.setTitle("BudgetCoin");
-            stage.setScene(new Scene(rootSecond, 700, 400));
+            stage.setScene(new Scene(rootSecond, 900, 600));
             stage.show();
         });
 
@@ -88,7 +88,7 @@ public class SecondController {
                 e.printStackTrace();
             }
             stage.setTitle("BudgetCoin");
-            stage.setScene(new Scene(rootSecond, 700, 400));
+            stage.setScene(new Scene(rootSecond, 900, 600));
             stage.show();
         });
 
@@ -102,7 +102,7 @@ public class SecondController {
                 e.printStackTrace();
             }
             stage.setTitle("BudgetCoin");
-            stage.setScene(new Scene(rootSecond, 700, 400));
+            stage.setScene(new Scene(rootSecond, 900, 600));
             stage.show();
         });
     }
