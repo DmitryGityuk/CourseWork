@@ -9,68 +9,95 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.SecondController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.SecondController">
     <children>
         <AnchorPane layoutY="40.0" prefHeight="560.0" prefWidth="900.0" style="-fx-background-color: fafafa;">
-         <children>
-            <Button fx:id="addWallet" layoutX="187.0" layoutY="33.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="227.0" style="-fx-background-color: fafafa;" text="Wallet">
-               <font>
-                  <Font name="Lobster" size="25.0" />
-               </font>
-            </Button>
-            <Button fx:id="addCard" layoutX="495.0" layoutY="33.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="210.0" style="-fx-background-color: fafafa;" text="Cards">
-               <font>
-                  <Font name="Lobster" size="25.0" />
-               </font>
-            </Button>
-            <ImageView fx:id="pictureWallet" fitHeight="25.0" fitWidth="41.0" layoutX="232.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/wallet.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="pictureCard" fitHeight="21.0" fitWidth="43.0" layoutX="532.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/card.png" />
-               </image>
-            </ImageView>
-            <ListView layoutY="161.0" prefHeight="399.0" prefWidth="300.0" />
-            <ListView layoutX="300.0" layoutY="161.0" prefHeight="399.0" prefWidth="300.0" />
-            <ListView layoutX="600.0" layoutY="161.0" prefHeight="399.0" prefWidth="300.0" />
-            <Text layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Текущие затраты" wrappingWidth="185.0">
-               <font>
-                  <Font name="Lobster" size="21.0" />
-               </font>
-            </Text>
-            <Text layoutX="300.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Потенциальный доход">
-               <font>
-                  <Font name="Lobster" size="21.0" />
-               </font>
-            </Text>
-            <Text layoutX="600.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Потенциальные затраты">
-               <font>
-                  <Font name="Lobster" size="21.0" />
-               </font>
-            </Text>
-            <Button fx:id="addCurrentExpenses" layoutX="275.0" layoutY="161.0" mnemonicParsing="false" text="+">
-               <font>
-                  <Font name="Lobster" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="addPotentialIncome" layoutX="575.0" layoutY="161.0" mnemonicParsing="false" text="+">
-               <font>
-                  <Font name="Lobster" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="addPotentialExpenses" layoutX="874.0" layoutY="161.0" mnemonicParsing="false" text="+">
-               <font>
-                  <Font name="Lobster" size="13.0" />
-               </font>
-            </Button>
-         </children>
+            <children>
+                <Button fx:id="addWallet" layoutX="187.0" layoutY="33.0" mnemonicParsing="false" prefHeight="30.0"
+                        prefWidth="227.0" style="-fx-background-color: fafafa;" text="Wallet">
+                    <font>
+                        <Font name="Lobster" size="25.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="addCard" layoutX="495.0" layoutY="33.0" mnemonicParsing="false" prefHeight="41.0"
+                        prefWidth="210.0" style="-fx-background-color: fafafa;" text="Cards">
+                    <font>
+                        <Font name="Lobster" size="25.0"/>
+                    </font>
+                </Button>
+                <ImageView fx:id="pictureWallet" fitHeight="25.0" fitWidth="41.0" layoutX="232.0" layoutY="45.0"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assets/wallet.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fx:id="pictureCard" fitHeight="21.0" fitWidth="43.0" layoutX="532.0" layoutY="47.0"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assets/card.png"/>
+                    </image>
+                </ImageView>
+                <ListView fx:id="currentExpense" layoutY="161.0" prefHeight="399.0" prefWidth="300.0"/>
+                <ListView fx:id="potentialIncome" layoutX="300.0" layoutY="161.0" prefHeight="399.0" prefWidth="300.0"/>
+                <ListView fx:id="potentialExpense" layoutX="600.0" layoutY="161.0" prefHeight="399.0"
+                          prefWidth="300.0"/>
+                <Text layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Текущие затраты"
+                      wrappingWidth="185.0">
+                    <font>
+                        <Font name="Lobster" size="21.0"/>
+                    </font>
+                </Text>
+                <Text layoutX="300.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Потенциальный доход">
+                    <font>
+                        <Font name="Lobster" size="21.0"/>
+                    </font>
+                </Text>
+                <Text layoutX="600.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Потенциальные затраты">
+                    <font>
+                        <Font name="Lobster" size="21.0"/>
+                    </font>
+                </Text>
+                <Button fx:id="addCurrentExpenses" layoutX="2.0" layoutY="134.0" mnemonicParsing="false" text="+">
+                    <font>
+                        <Font name="Lobster" size="13.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="addPotentialIncome" layoutX="301.0" layoutY="134.0" mnemonicParsing="false" text="+">
+                    <font>
+                        <Font name="Lobster" size="13.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="addPotentialExpenses" layoutX="600.0" layoutY="134.0" mnemonicParsing="false" text="+">
+                    <font>
+                        <Font name="Lobster" size="13.0"/>
+                    </font>
+                </Button>
+                <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="35.0" layoutY="134.0"
+                           onMouseClicked="#showCurrentExpense" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assets/eye.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="334.0" layoutY="136.0"
+                           onMouseClicked="#showPotentialIncome" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assets/eye.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="633.0" layoutY="136.0"
+                           onMouseClicked="#showPotentialExpense" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assets/eye.png"/>
+                    </image>
+                </ImageView>
+            </children>
         </AnchorPane>
         <Label layoutX="6.0" layoutY="-1.0" text="BudgetCoin" textFill="WHITE">
             <font>
-                <Font name="Lobster" size="23.0" />
+                <Font name="Lobster" size="23.0"/>
             </font>
         </Label>
     </children>

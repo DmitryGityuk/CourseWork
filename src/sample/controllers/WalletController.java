@@ -1,36 +1,38 @@
 package sample.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import modelUI.WalletUI;
 
-import java.io.IOException;
+import java.io.*;
 
 public class WalletController {
 
-    @FXML
-    private Button addBankCard;
+    ObservableList<String> rowList = FXCollections.observableArrayList();
+
+    File fileObject = new File("src/files/wallets.txt");
 
     @FXML
     private TextField addNameWallet;
 
     @FXML
+    private ListView<String> listWallets;
+
+    @FXML
     private Button goBack;
 
     @FXML
-    private Button addBills;
+    private TextField addValueCard;
 
     @FXML
-    private Button save;
+    private TextField addBills;
 
     @FXML
-    private ListView<?> listWallets;
+    private TextField addNameBankCard;
 
     @FXML
     void initialize() {
@@ -39,37 +41,40 @@ public class WalletController {
             ChangeWindow changeWindow = new ChangeWindow();
             changeWindow.changeWindowToSecond();
         });
+    }
 
-        addBankCard.setOnMouseClicked(event -> {
-            addBankCard.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            Parent rootSecond = null;
-            try {
-                rootSecond = FXMLLoader.load(getClass().getResource("/sample/fxml/bankCardToWallet.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
+    @FXML
+    void showFile(ActionEvent event) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileObject), "UTF8"));
+            String line = reader.readLine();
+            rowList.add(line);
+            while (line != null) {
+                line = reader.readLine();
+                if (line != null) {
+                    rowList.add(line);
+                }
             }
-            stage.setTitle("BudgetCoin");
-            stage.setScene(new Scene(rootSecond, 900, 600));
-            stage.show();
-        });
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        addBills.setOnMouseClicked(event -> {
-            addBills.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            Parent rootSecond = null;
-            try {
-                rootSecond = FXMLLoader.load(getClass().getResource("/sample/fxml/bills.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            stage.setTitle("BudgetCoin");
-            stage.setScene(new Scene(rootSecond, 900, 600));
-            stage.show();
-        });
-
-        addNameWallet.setOnAction(event -> {
-
-        });
+    @FXML
+    void innFile(ActionEvent event) {
+        listWallets.setItems(rowList);
+        try {
+            String newLine = "\n";
+            FileWriter fileWriter = new FileWriter("src/files/wallets.txt", true);
+            fileWriter.write(newLine + "Name wallet: " + addNameWallet.getText() + newLine);
+            fileWriter.write("Name card in wallet: " + addNameBankCard.getText() + newLine);
+            fileWriter.write("Balance card in wallet: " + addValueCard.getText() + newLine);
+            fileWriter.write("Bills on the wallet: " + addBills.getText() + newLine);
+            fileWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

@@ -1,18 +1,18 @@
 package service;
 
 import domain.Expense;
-import enums.interfaces.ServiceList;
+import enums.interfaces.IServiceList;
 
+import java.io.FileWriter;
+import java.io.Writer;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.*;
 
-import static java.lang.System.out;
-
 /***
  * Класс описывает список текущих затрат и работы с ними
  */
-public class CurrentExpenses implements ServiceList {
+public class CurrentExpenses implements IServiceList {
 
     /***
      * Мапа с категорией как ключ и списком как значение
@@ -32,7 +32,7 @@ public class CurrentExpenses implements ServiceList {
      * @param expense
      * @param category
      */
-    public void addExpense(Expense expense, String category){
+    public void addExpense(Expense expense, String category) {
         List<Expense> expenseList = this.expanses.get(category);
         if (expenseList == null)
             throw new IllegalArgumentException("Категории " + category + " не существует.");
@@ -61,7 +61,6 @@ public class CurrentExpenses implements ServiceList {
      */
     public void deleteExpense(String category) {
         expanses.remove(category);
-
     }
 
     /***
@@ -81,39 +80,42 @@ public class CurrentExpenses implements ServiceList {
      *
      * @return - возращаемое значение
      */
-    public void getCostsCategory(String category) {
+    public BigDecimal getCostsCategory(String category) {
         List<Expense> exp = this.expanses.get(category);
         BigDecimal cat = exp
                 .stream()
                 .map(Expense::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-        out.println("Общая сумма затрат по категории " + category + ": " + cat);
+        return cat;
     }
-
 
     /***
      * Метод получения общей суммы текущих затрат
+     * @return
      */
     @Override
-    public void getTotalCosts() {
+    public BigDecimal getTotalCosts() {
         BigDecimal totalCost = expanses
                 .values()
                 .stream()
                 .flatMap(List::stream)
                 .map(Expense::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-        out.println("Общая сумма затрат: " + totalCost);
+        return totalCost;
     }
 
-    /***
-     * Метод производит печать всего списка текущих затрат
-     */
     @Override
-    public void print() {
-        expanses.values()
-                .stream()
-                .flatMap(List::stream)
-                .forEach(out::println);
+    public void saveToFile() {
+        try {
+            Writer writeCurrentExpense = new FileWriter("src/files/currentExpense.txt", true);
+            for (String key : expanses.keySet()) {
+                writeCurrentExpense.write(key + ":" + expanses.get(key) + "\n");
+                writeCurrentExpense.flush();
+            }
+            writeCurrentExpense.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

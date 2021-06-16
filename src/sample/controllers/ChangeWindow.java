@@ -9,24 +9,11 @@ import java.io.IOException;
 
 public class ChangeWindow {
 
-    void changeWindowToSecond(){
+    void changeWindowToSecond() {
         Stage stage = new Stage();
         Parent rootSecond = null;
         try {
             rootSecond = FXMLLoader.load(getClass().getResource("/sample/fxml/secondWindow.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setTitle("BudgetCoin");
-        stage.setScene(new Scene(rootSecond, 900, 600));
-        stage.show();
-    }
-
-    void changeWindowToWallet(){
-        Stage stage = new Stage();
-        Parent rootSecond = null;
-        try {
-            rootSecond = FXMLLoader.load(getClass().getResource("/sample/fxml/wallet.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

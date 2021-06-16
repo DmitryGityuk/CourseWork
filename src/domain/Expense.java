@@ -1,6 +1,6 @@
 package domain;
 
-import enums.interfaces.Parse;
+import enums.interfaces.IParse;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -12,7 +12,7 @@ import java.util.Locale;
 /***
  * Класс описывает затрату
  */
-public class Expense implements Parse {
+public class Expense implements IParse {
     /***
      * Наименование затраты
      */
@@ -72,7 +72,7 @@ public class Expense implements Parse {
 
     @Override
     public String toString() {
-        return "Покупка " + this.name + " по цене " + '(' + this.price + ')' + " руб. " + " дата покупки: " + this.date + "\n";
+        return "Purchase " + this.name + " by price " + '(' + this.price + ')' + " rub. " + " purchase date: " + this.date + "\n";
     }
 
     /***
@@ -97,9 +97,8 @@ public class Expense implements Parse {
      */
     @Override
     public BigDecimal parseBigDecimal(String str) {
-        str.replace(',', '.');
         BigDecimal b = new BigDecimal(str);
-        b = b.setScale(2, BigDecimal.ROUND_DOWN);
+        b = b.setScale(2);
         return b;
     }
 }

@@ -1,8 +1,11 @@
 package service;
 
 import domain.Wallet;
-import enums.interfaces.ServiceWalletAndCard;
+import enums.interfaces.IServiceWalletAndCard;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -11,7 +14,7 @@ import static java.lang.System.out;
 /***
  * Класс описывает список кошельков и работы с ними
  */
-public class WalletsService implements ServiceWalletAndCard {
+public class WalletsService implements IServiceWalletAndCard {
     /***
      * список всех кошельков
      */
@@ -19,6 +22,14 @@ public class WalletsService implements ServiceWalletAndCard {
 
     public WalletsService() {
         this.wallets = new ArrayList<>();
+    }
+
+    public ArrayList<Wallet> getWallets() {
+        return wallets;
+    }
+
+    public void setWallets(ArrayList<Wallet> wallets) {
+        this.wallets = wallets;
     }
 
     /***
@@ -31,7 +42,6 @@ public class WalletsService implements ServiceWalletAndCard {
 
     /***
      * Метод производит удаление кошелька
-     *
      */
     public void deleteWallet(Wallet nameWallet) {
         wallets.remove(nameWallet);
@@ -39,25 +49,37 @@ public class WalletsService implements ServiceWalletAndCard {
 
     /***
      * Метод производит подсчёт общей суммы по всем кошелькам
+     * @return
      */
     @Override
-    public void getTotalSum() {
+    public BigDecimal getTotalSum() {
         BigDecimal total = (BigDecimal) wallets
                 .stream()
                 .map(Wallet::allSum)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         out.println("Общая сумма составляет: " + total);
+        return total;
     }
 
     /***
-     * Метод производит печать списка всех кошельков
+     * Метод производит сохранение списка кредитных карт
+     * @throws IOException
      */
-    @Override
-    public void print() {
-        wallets.stream().forEach(out::println);
+    public void saveToFile() throws IOException {
+        Writer writeWallet = new FileWriter("src/files/wallets.txt", true);
+        for (Wallet line : wallets) {
+            writeWallet.write(String.valueOf(line));
+        }
+        writeWallet.close();
     }
 
-
+    @Override
+    public String toString() {
+        return "Wallet "
+                ;
+    }
 }
+
+
 
 

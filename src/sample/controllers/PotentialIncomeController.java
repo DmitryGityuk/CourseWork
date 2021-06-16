@@ -1,8 +1,11 @@
 package sample.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
+import java.io.FileWriter;
 
 public class PotentialIncomeController {
     @FXML
@@ -15,7 +18,17 @@ public class PotentialIncomeController {
     private TextField addValueIncome;
 
     @FXML
-    private Button save;
+    void saveToFile(ActionEvent event) {
+        try {
+            String newLine = "\n";
+            FileWriter fileWriter = new FileWriter("src/files/potentialIncome.txt", true);
+            fileWriter.write("Name income: " + addNameIncome.getText());
+            fileWriter.write(", value income: " + addValueIncome.getText() + newLine);
+            fileWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     @FXML
     void initialize() {

@@ -1,11 +1,13 @@
 package sample.controllers;
 
-import domain.Expense;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 
+import java.io.*;
 import java.text.ParseException;
 
 public class CurrentExpenseController {
@@ -26,20 +28,44 @@ public class CurrentExpenseController {
     private SplitMenuButton choiceCategory;
 
     @FXML
-    private Button save;
+    private MenuItem Home;
+
+    @FXML
+    private MenuItem Sport;
+
+    @FXML
+    private MenuItem Transport;
+
+    @FXML
+    private MenuItem Entertainment;
+
+    @FXML
+    private MenuItem Food;
+
+    @FXML
+    private MenuItem Travel;
 
     @FXML
     void initialize() throws ParseException {
-        Expense expense = new Expense();
         goBack.setOnMouseClicked(event -> {
             goBack.getScene().getWindow().hide();
             ChangeWindow changeWindow = new ChangeWindow();
             changeWindow.changeWindowToSecond();
         });
-        expense.setName(addNameExpense.getText());
-        //expense.setPrice(addCostExpense.getText());
-        addNameExpense.getText();
+    }
 
-
+    @FXML
+    void innFile(ActionEvent event) {
+        try {
+            String newLine = "\n";
+            FileWriter fileWriter = new FileWriter("src/files/currentExpense.txt", true);
+            fileWriter.write("Name expense: " + addNameExpense.getText());
+            fileWriter.write(", cost of expense: " + addCostExpense.getText());
+            fileWriter.write(", date expense: " + addDateExpense.getText());
+            fileWriter.write(", category expense: " + choiceCategory.getText() + newLine);
+            fileWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

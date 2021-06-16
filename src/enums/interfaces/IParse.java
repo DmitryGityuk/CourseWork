@@ -2,7 +2,7 @@ package enums.interfaces;
 
 import java.math.BigDecimal;
 
-public interface Parse {
+public interface IParse {
 
     BigDecimal parseBigDecimal(String str);
 }

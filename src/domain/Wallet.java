@@ -12,6 +12,7 @@ public class Wallet {
      * список банкнот
      */
     private List<BigDecimal> bills = new ArrayList<>();
+    ;
     /***
      * список банковских карт в кошельке
      */
@@ -54,7 +55,7 @@ public class Wallet {
      * Метод добавляет банкноту в кошелёк
      * @param bill - банкнота
      */
-    public void adBill(Wallet wallet, BigDecimal bill) {
+    public void adBill(BigDecimal bill) {
         bills.add(bill);
     }
 
@@ -69,14 +70,6 @@ public class Wallet {
      */
     public void addCard(String cardName, BigDecimal balance) {
         bankCards.put(cardName, balance);
-    }
-
-    /***
-     * Метод производит замену имени кошелька
-     * @param newNameWallet - имя кошелька
-     */
-    public void changeNameWallet(String newNameWallet) {
-        this.nameWallet = newNameWallet;
     }
 
     /***
@@ -117,10 +110,10 @@ public class Wallet {
 
     @Override
     public String toString() {
-        return "Wallet {" +
-                " Имя кошелька: " + nameWallet + '\\' +
-                " Наличных в кошельке: " + bills + '\\' +
-                " Сумма денег на карте: " + +'\\' +
-                " Всего денег в кошельке: " + allSum() + '}';
+        return "Wallet " +
+                " Name Wallet: " + nameWallet + '\\' +
+                " Bills in wallet: " + bills + '\\' +
+                " The amount of money on the card: " + cardSum() + '\\' +
+                " Total money in the wallet: ";
     }
 }

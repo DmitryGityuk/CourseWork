@@ -6,40 +6,47 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.CurrentExpenseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.CurrentExpenseController">
     <children>
         <AnchorPane layoutY="40.0" prefHeight="561.0" prefWidth="900.0" style="-fx-background-color: fafafa;">
             <children>
-                <Button layoutX="-7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="294.0" style="-fx-background-color: fafafa;" text="Потенциальный доход">
+                <Button layoutX="-7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="294.0"
+                        style="-fx-background-color: fafafa;" text="Потенциальный доход">
                     <font>
-                        <Font name="Lobster" size="25.0" />
+                        <Font name="Lobster" size="25.0"/>
                     </font>
                 </Button>
-                <TextField fx:id="addNameIncome" layoutX="22.0" layoutY="80.0" prefHeight="58.0" prefWidth="330.0" promptText="Введите наименование дохода">
+                <TextField fx:id="addNameIncome" layoutX="22.0" layoutY="80.0" prefHeight="58.0" prefWidth="330.0"
+                           promptText="Введите наименование дохода">
                     <font>
-                        <Font name="Lobster" size="17.0" />
+                        <Font name="Lobster" size="17.0"/>
                     </font>
                 </TextField>
-                <Button fx:id="goBack" layoutX="22.0" layoutY="503.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #2E3348;" text="Назад" textFill="WHITE">
+                <Button fx:id="goBack" layoutX="22.0" layoutY="503.0" mnemonicParsing="false" prefHeight="26.0"
+                        prefWidth="79.0" style="-fx-background-color: #2E3348;" text="Назад" textFill="WHITE">
                     <font>
-                        <Font name="Lobster" size="17.0" />
+                        <Font name="Lobster" size="17.0"/>
                     </font>
                 </Button>
-                <TextField fx:id="addValueIncome" layoutX="22.0" layoutY="160.0" prefHeight="58.0" prefWidth="330.0" promptText="Введите сумму дохода">
+                <TextField fx:id="addValueIncome" layoutX="22.0" layoutY="160.0" prefHeight="58.0" prefWidth="330.0"
+                           promptText="Введите сумму дохода">
                     <font>
-                        <Font name="Lobster" size="17.0" />
+                        <Font name="Lobster" size="17.0"/>
                     </font>
                 </TextField>
-                <Button fx:id="save" layoutX="22.0" layoutY="230.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="181.0" style="-fx-background-color: #2E3348;" text="Сохранить" textFill="WHITE">
+                <Button layoutX="22.0" layoutY="230.0" mnemonicParsing="false" prefHeight="29.0"
+                        prefWidth="181.0" style="-fx-background-color: #2E3348;" text="Сохранить" textFill="WHITE">
                     <font>
-                        <Font name="Lobster" size="17.0" />
+                        <Font name="Lobster" size="17.0"/>
                     </font>
                 </Button>
             </children>
         </AnchorPane>
         <Label layoutX="6.0" layoutY="-1.0" text="BudgetCoin" textFill="WHITE">
             <font>
-                <Font name="Lobster" size="23.0" />
+                <Font name="Lobster" size="23.0"/>
             </font>
         </Label>
     </children>

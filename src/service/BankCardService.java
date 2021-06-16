@@ -1,18 +1,17 @@
 package service;
 
 import domain.BankCard;
-import enums.interfaces.ServiceWalletAndCard;
+import enums.interfaces.IServiceWalletAndCard;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import static java.lang.System.out;
 
 /***
  * Класс описывает список банковских карт и работы с ними
  */
-public class BankCardService implements ServiceWalletAndCard {
+public class BankCardService implements IServiceWalletAndCard, Serializable {
     /***
      * Список всех банковских карт
      */
@@ -20,6 +19,14 @@ public class BankCardService implements ServiceWalletAndCard {
 
     public BankCardService() {
         this.bankCards = new ArrayList<>();
+    }
+
+    public ArrayList<BankCard> getBankCards() {
+        return bankCards;
+    }
+
+    public void setBankCards(ArrayList<BankCard> bankCards) {
+        this.bankCards = bankCards;
     }
 
     /***
@@ -58,22 +65,27 @@ public class BankCardService implements ServiceWalletAndCard {
 
     /***
      * Метод производит подсчёт общей суммы по банковским картам
+     * @return
      */
     @Override
-    public void getTotalSum() {
+    public BigDecimal getTotalSum() {
         BigDecimal total = bankCards
                 .stream()
                 .map(BankCard::getBalance)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-        out.println("Общая сумма на картах составляет " + total);
+        return total;
     }
 
     /***
-     * Метод производит печать списка банковских карт
+     * Метод производит сохранение списка кредитных карт
+     * @throws IOException
      */
-    @Override
-    public void print() {
-        bankCards.stream().forEach(out::println);
+    public void saveToFile() throws IOException {
+        Writer writeCreditCard = new FileWriter("src/files/creditCards.txt", true);
+        for (BankCard line : bankCards) {
+            writeCreditCard.write(String.valueOf(line));
+        }
+        writeCreditCard.close();
     }
 }
 

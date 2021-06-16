@@ -1,0 +1,4 @@
+wallet:[Поступил(а) Salary в размере 50000.00 RUB]
+wallet:[Поступил(а) Salary в размере 50000.00 RUB, Поступил(а) bonus в размере 2000.00 RUB]
+BankCard:[Received Salary at the rate of 50000.00 RUB]
+BankCard:[Received Salary at the rate of 50000.00 RUB, Received Bonus at the rate of 75000.00 RUB]
