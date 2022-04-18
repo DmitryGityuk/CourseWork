@@ -1,0 +1,3 @@
+Name expense: CoffeeMachine, price expense: 45000, priority expense: 4
+Name expense: Car, price expense: 2500000, priority expense: 5
+Name expense: , price expense: , priority expense: 

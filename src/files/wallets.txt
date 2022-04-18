@@ -1,0 +1,5 @@
+Name wallet: FIRST WALLET
+Name card in wallet: SBERBANK
+Balance card in wallet: 150000
+Bills on the wallet: 5000
+

@@ -1,0 +1,4 @@
+Name expense: milk, cost of expense: 50, date expense: 2021-06-17, category expense: Выберите категорию
+Name expense: bread, cost of expense: 30, date expense: 2021-06-17, category expense: Выберите категорию
+Name expense: beer, cost of expense: 80, date expense: 2021-06-17, category expense: Выберите категорию
+Name expense: bread, cost of expense: 50, date expense: 2021-06-16, category expense: Выберите категорию
